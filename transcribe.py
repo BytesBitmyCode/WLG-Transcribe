@@ -14,7 +14,7 @@ def transcribe_audio(audio_directory, output_directory, completed_audio_director
     for filename in os.listdir(audio_directory):
         if filename.endswith(".mp3"):  # Check if the file is an MP3
             audio_file_path = os.path.join(audio_directory, filename)
-            print(f"Transcribing {audio_file_path}...")
+            print(f"Transcribing {audio_file_path} ...")
             
             # Transcribe the audio file
             result = model.transcribe(audio_file_path)
