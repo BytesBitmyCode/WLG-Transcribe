@@ -2,7 +2,7 @@ import os
 import whisper
 import shutil
 
-def transcribe_audio(audio_directory, output_directory, completed_audio_directory):
+def transcribe_audio(audio_directory, output_directory, completed_audio_directory, skip_seconds=15, min_duration_for_skip=45):
     # Load the model (consider doing this outside the loop if performance is a concern)
     model = whisper.load_model("medium")
     
@@ -14,10 +14,30 @@ def transcribe_audio(audio_directory, output_directory, completed_audio_director
     for filename in os.listdir(audio_directory):
         if filename.endswith(".mp3"):  # Check if the file is an MP3
             audio_file_path = os.path.join(audio_directory, filename)
-            print(f"Transcribing {audio_file_path} ...")
+            print(f"Processing {audio_file_path}...")
             
-            # Transcribe the audio file
-            result = model.transcribe(audio_file_path)
+            # Load the audio data
+            audio = whisper.load_audio(audio_file_path)
+            audio = whisper.pad_or_trim(audio)
+            
+            # Calculate the duration of the audio (in seconds)
+            sample_rate = 16000  # Whisper uses a sample rate of 16kHz
+            duration = len(audio) / sample_rate
+            
+            # Decide whether to skip the first 15 seconds based on the duration
+            if duration > min_duration_for_skip:
+                skip_samples = sample_rate * skip_seconds
+                audio_language_detection = audio[skip_samples:]
+            else:
+                audio_language_detection = audio
+            
+            # (Optional) Detect the language
+            _, probs = whisper.detect_language(model, audio_language_detection)
+            language = max(probs, key=probs.get)
+            print(f"Detected language: {language} (confidence: {probs[language]:.2%})")
+            
+            # Transcribe the entire audio file (not just the trimmed version)
+            result = model.transcribe(audio, language=language)
             
             # Extract the base name of the audio file (without extension)
             name_without_extension = os.path.splitext(filename)[0]
