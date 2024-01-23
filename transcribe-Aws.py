@@ -53,12 +53,12 @@ def transcribe_audio(output_directory, processed_files_log):
                 
                 # Use PyDub to read the audio file
                 audio_segment = AudioSegment.from_file(audio_stream, format="mp3")
-                samples = np.array(audio_segment.get_array_of_samples()).astype(np.float32)
                 
-                # If the audio file has more than one channel (stereo), take only one channel
+                # Mix stereo to mono if necessary
                 if audio_segment.channels > 1:
-                    samples = samples.reshape((-1, audio_segment.channels))
-                    samples = samples[:, 0]  # Take only the first channel
+                    audio_segment = audio_segment.set_channels(1)
+                
+                samples = np.array(audio_segment.get_array_of_samples()).astype(np.float32)
                 
                 # Normalize the samples to the range expected by the model (if needed)
                 samples = samples / (2**15)  # Assuming 16-bit audio
