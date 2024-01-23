@@ -14,3 +14,10 @@ a. conda create --name audio-text python=3.8
 b. conda activate audio-text
 c. pip install -r requirements.txt
 
+Aws
+-access Key: AKIAY6FBQKYEWXI2A6O4
+-Secret access key: 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
+-ARN: arn:aws:iam::614519035401:user/audioTranscript
+
+$env:AWS_ACCESS_KEY_ID="AKIAY6FBQKYEWXI2A6O4"
+$env:AWS_SECRET_ACCESS_KEY="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"
