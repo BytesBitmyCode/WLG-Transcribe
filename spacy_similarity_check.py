@@ -2,7 +2,7 @@ import spacy
 nlp = spacy.load('en_core_web_md')  # Load the medium English model
 
 # Function to check if the questions or phrases are mentioned in the call
-def check_questions_phrases(text, questions_phrases, keywords_phrases, threshold=0.8):  # Increased threshold
+def check_questions_phrases(text, questions_phrases, keywords_phrases, threshold=0.85):  # Increased threshold
     doc = nlp(text)
     results = {}
     for question, keyword in zip(questions_phrases, keywords_phrases):
@@ -40,9 +40,9 @@ def analyze_text_file(file_path):
         "speak to an attorney",
         "speak to a manager",
         # ... add the corresponding keywords/phrases for your questions ...
-        "discharge case",
-        "close case",
-        "change firm"
+        "discharge their case",
+        "close their case",
+        "change firms"
     ]
 
     # Check if specific questions or phrases are mentioned
@@ -53,7 +53,7 @@ def analyze_text_file(file_path):
         print(f"{question}: {answer}")
 
 # Path to your text file
-file_path = r"C:\Users\mbarreau\OneDrive - The Ward Law Group, PL\Documents\Software Engineer\WLG Transcribe\raw mp3 files\transcibed txt\2022-05-02_165356__FROM_17869238043__TO_7863314900__00505693990111ecc8c7a715cdba3495.txt"
+file_path = r"C:\Users\mbarreau\OneDrive - The Ward Law Group, PL\Documents\Software Engineer\WLG Transcribe\raw mp3 files\transcibed txt\2022-05-03_062219__FROM_17869238043__TO_9547518552__00505693990111ecc93894fda8983495.txt"
 
 # Analyze the text file
 analyze_text_file(file_path)
