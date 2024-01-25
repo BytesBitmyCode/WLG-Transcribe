@@ -70,7 +70,7 @@ def transcribe_audio(output_directory, processed_files_log):
                 name_without_extension = os.path.splitext(filename)[0]
                 
                 # Construct the output file path with the same base name as the audio file
-                output_file_path = os.path.join(output_directory, f"{name_without_extension}_transcript.txt")
+                output_file_path = os.path.join(output_directory, f"{name_without_extension}.txt")
                 
                 # Write the transcribed text to a file
                 with open(output_file_path, 'w', encoding='utf-8') as file:
