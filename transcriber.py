@@ -6,8 +6,8 @@ def transcribe_audio(audio_directory, output_directory, completed_audio_director
     # Load the model (consider doing this outside the loop if performance is a concern)
     model = whisper.load_model("medium")
     
-    # Ensure output directory exists
-    os.makedirs(output_directory, exist_ok=True)
+    
+    os.makedirs(output_directory, exist_ok=True) # Ensure output directory exists
     os.makedirs(completed_audio_directory, exist_ok=True)  # Ensure completed audio directory exists
     
     # Loop through each file in the audio_directory
@@ -37,9 +37,9 @@ def transcribe_audio(audio_directory, output_directory, completed_audio_director
             print(f"Moved audio file to {completed_audio_file_path}")
 
 # Directories
-audio_directory = r"C:\Users\mbarreau\OneDrive - The Ward Law Group, PL\Documents\Software Engineer\WLG Transcribe\raw mp3 files"
-output_directory = r"C:\Users\mbarreau\OneDrive - The Ward Law Group, PL\Documents\Software Engineer\WLG Transcribe\raw mp3 files\transcibed txt"
-completed_audio_directory = r"C:\Users\mbarreau\OneDrive - The Ward Law Group, PL\Documents\Software Engineer\WLG Transcribe\raw mp3 files\transcibed mp3"
+audio_directory = r"C:\Users\Michael Barreau\Downloads\mp3"
+output_directory = r"C:\Users\Michael Barreau\Downloads\mp3\transcibed txt"
+completed_audio_directory = r"C:\Users\Michael Barreau\Downloads\mp3\transcibed mp3"
 
 # Transcribe all audio files in the directory and move completed ones
 transcribe_audio(audio_directory, output_directory, completed_audio_directory)
