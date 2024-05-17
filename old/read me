@@ -3,15 +3,15 @@
 
 transcribe.py contains the script to perform the mp3 transcriptions.
 
-the conda env is call audio-text
+the conda env is call audio-inteligence
 
-activate the env: conda activate audio-text
+activate the env: conda activate audio-inteligence
 
 Make sure Conda is installed with python.
 
 To recreate this in a new environment
-a. conda create --name audio-text python=3.8
-b. conda activate audio-text
+a. conda create --name audio-inteligence python=3.8
+b. conda activate audio-inteligence
 
 in VS Code add the python extension then choose the conda interpreter.
 c. pip install -r requirements.txt
