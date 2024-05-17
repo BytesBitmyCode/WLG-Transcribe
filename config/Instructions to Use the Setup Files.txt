@@ -1,0 +1,14 @@
+Instructions to Use the Setup Files
+Unix-like Systems: Open a terminal, navigate to the directory containing setup.sh, and run:
+
+bash
+Copy code
+./setup.sh
+This script will create the environment, install dependencies, and check for FFmpeg.
+
+Windows: Open Command Prompt as Administrator, navigate to the directory containing setup.bat, and run:
+
+batch
+Copy code
+setup.bat
+This script performs the same actions as the Unix script but is tailored for the Windows environment.

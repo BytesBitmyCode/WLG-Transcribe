@@ -1,5 +1,5 @@
 
-
+Ensure that the ffmpeg to your path.
 
 transcribe.py contains the script to perform the mp3 transcriptions.
 

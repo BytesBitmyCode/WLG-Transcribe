@@ -1,0 +1,32 @@
+@echo off
+
+REM Check if Conda is installed
+where conda
+if %ERRORLEVEL% neq 0 (
+    echo Conda could not be found, please install Conda first.
+    goto end
+)
+
+echo Creating Conda environment...
+REM Create Conda environment
+conda create --name audio-inteligence python=3.8 -y
+
+echo Activating the environment...
+REM Activate the environment
+call conda activate audio-inteligence
+
+echo Installing Python dependencies...
+REM Install required Python packages
+pip install -r requirements.txt
+
+REM Check if FFmpeg is installed
+where ffmpeg
+if %ERRORLEVEL% neq 0 (
+    echo FFmpeg is not installed. Please install FFmpeg and add it to your PATH.
+) else (
+    echo FFmpeg is installed and available.
+)
+
+echo Setup is complete. You can now run the transcription script with 'python transcribe.py'
+
+:end

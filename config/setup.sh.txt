@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Check if Conda is installed
+if ! command -v conda &> /dev/null
+then
+    echo "Conda could not be found, please install Conda first."
+    exit
+fi
+
+echo "Creating Conda environment..."
+# Create Conda environment
+conda create --name audio-inteligence python=3.8 -y
+
+echo "Activating the environment..."
+# Activate the environment
+source activate audio-inteligence
+
+echo "Installing Python dependencies..."
+# Install required Python packages
+pip install -r requirements.txt
+
+# Check if FFmpeg is installed
+if ! command -v ffmpeg &> /dev/null
+then
+    echo "FFmpeg is not installed. Please install FFmpeg and add it to your PATH."
+else
+    echo "FFmpeg is installed and available."
+fi
+
+echo "Setup is complete. You can now run the transcription script with 'python transcribe.py'"
